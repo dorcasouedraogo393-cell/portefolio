@@ -1,6 +1,4 @@
-
-
-html = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -9,15 +7,14 @@ html = '''<!DOCTYPE html>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:#0d0c0b; --bg2:#141210; --surface:#1a1714; --border:rgba(255,255,255,0.07);
-      --gold:#c9a96e; --gold2:#e8c98a; --coral:#e05c4b;
-      --text:#f0ece6; --muted:#6e6760;
-      --ff-disp:"Cormorant Garamond",serif; --ff-body:"Cabinet Grotesk",sans-serif;
+      --bg:#0d0c0b;--bg2:#141210;--surface:#1a1714;--border:rgba(255,255,255,0.07);
+      --gold:#c9a96e;--gold2:#e8c98a;--coral:#e05c4b;
+      --text:#f0ece6;--muted:#6e6760;
+      --ff-disp:'Cormorant Garamond',serif;--ff-body:'Cabinet Grotesk',sans-serif;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);font-family:var(--ff-body);overflow-x:hidden;}
-
     #cur{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;}
     #cur-ring{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;opacity:.4;}
 
@@ -27,7 +24,8 @@ html = '''<!DOCTYPE html>
     .nav-links a{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
     .nav-links a:hover{color:var(--gold);}
 
-    #hero{min-height:100vh;padding:0 5vw;display:grid;grid-template-columns:1fr 460px;align-items:center;gap:4rem;position:relative;overflow:hidden;}
+    /* HERO */
+    #hero{min-height:100vh;padding:0 5vw;display:grid;grid-template-columns:1fr 480px;align-items:center;gap:4rem;position:relative;overflow:hidden;}
     .hero-bg-text{position:absolute;bottom:-3rem;right:-1rem;font-family:var(--ff-disp);font-weight:700;font-style:italic;font-size:25vw;line-height:1;color:rgba(201,169,110,.04);pointer-events:none;user-select:none;white-space:nowrap;}
     .hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;opacity:0;animation:up .6s .2s forwards;}
     .dot-pulse{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pls 2s infinite;}
@@ -40,14 +38,10 @@ html = '''<!DOCTYPE html>
     .btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
     .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
     .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+    .hero-visual{opacity:0;animation:up .9s .8s forwards;}
+    .hero-visual svg{width:100%;max-width:460px;display:block;}
 
-    .hero-visual{opacity:0;animation:up .9s .8s forwards;position:relative;}
-    .hero-screens{display:grid;grid-template-columns:1fr 1fr;gap:10px;transform:perspective(800px) rotateY(-8deg) rotateX(4deg);}
-    .hero-scr{border-radius:8px;overflow:hidden;border:1px solid rgba(201,169,110,0.2);box-shadow:0 20px 60px rgba(0,0,0,.5);}
-    .hero-scr img{width:100%;height:130px;object-fit:cover;object-position:top;}
-    .hero-scr:nth-child(1){grid-column:1/-1;height:140px;}
-    .hero-scr:nth-child(1) img{height:140px;}
-
+    /* MARQUEE */
     .marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.8rem 0;background:var(--surface);}
     .marquee-track{display:flex;gap:3rem;white-space:nowrap;animation:scroll 30s linear infinite;}
     .marquee-item{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);flex-shrink:0;}
@@ -61,7 +55,7 @@ html = '''<!DOCTYPE html>
     #skills{background:var(--surface);}
     .sk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
     .sk-cell{background:var(--bg2);padding:2rem 1.8rem;transition:background .3s;position:relative;overflow:hidden;}
-    .sk-cell::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--coral));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+    .sk-cell::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--coral));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
     .sk-cell:hover::after{transform:scaleX(1);}
     .sk-cell:hover{background:rgba(201,169,110,.04);}
     .sk-num{font-family:var(--ff-disp);font-weight:700;font-style:italic;font-size:3rem;color:rgba(201,169,110,.12);line-height:1;margin-bottom:.8rem;}
@@ -77,18 +71,8 @@ html = '''<!DOCTYPE html>
     .proj-row:hover{border-color:rgba(201,169,110,.35);transform:translateY(-5px);box-shadow:0 30px 70px rgba(0,0,0,.4);}
     .proj-row.reverse{direction:rtl;}
     .proj-row.reverse>*{direction:ltr;}
-
-    /* Screenshot container */
-    .proj-screen{position:relative;overflow:hidden;min-height:280px;background:var(--bg2);}
-    .proj-screen img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:object-position 4s ease;}
-    .proj-screen:hover img{object-position:bottom center;}
-    .proj-screen-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,0));pointer-events:none;}
-    .proj-screen-badge{position:absolute;top:16px;left:16px;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.7);color:var(--gold);padding:.3rem .7rem;border-radius:2px;backdrop-filter:blur(8px);}
-
-    /* SVG fallback */
-    .proj-illus{min-height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-    .proj-illus svg{width:85%;max-width:320px;}
-
+    .proj-illus{min-height:300px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .proj-illus svg{width:90%;max-width:340px;}
     .proj-info{padding:3rem;display:flex;flex-direction:column;justify-content:center;}
     .proj-num{font-family:var(--ff-disp);font-weight:300;font-style:italic;font-size:4rem;color:rgba(201,169,110,.1);line-height:1;margin-bottom:.5rem;}
     .proj-tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
@@ -137,10 +121,8 @@ html = '''<!DOCTYPE html>
     .reveal.visible{opacity:1;transform:translateY(0);}
 
     @media(max-width:900px){
-      nav{padding:1rem 1.5rem;}
-      .nav-links{display:none;}
-      #hero{grid-template-columns:1fr;}
-      .hero-visual{display:none;}
+      nav{padding:1rem 1.5rem;} .nav-links{display:none;}
+      #hero{grid-template-columns:1fr;} .hero-visual{display:none;}
       section{padding:4rem 1.5rem;}
       .sk-grid{grid-template-columns:1fr 1fr;}
       .proj-row,#contact{grid-template-columns:1fr;}
@@ -152,8 +134,7 @@ html = '''<!DOCTYPE html>
   </style>
 </head>
 <body>
-<div id="cur"></div>
-<div id="cur-ring"></div>
+<div id="cur"></div><div id="cur-ring"></div>
 
 <nav>
   <div class="logo">Dorcas ✦</div>
@@ -165,12 +146,12 @@ html = '''<!DOCTYPE html>
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section id="hero">
   <div>
     <div class="hero-eyebrow"><span class="dot-pulse"></span> Dev Web &amp; Mobile · Lomé, Togo</div>
     <h1 class="hero-name"><span class="outline">OUEDRAOGO</span><br>Dorcas</h1>
-    <p class="hero-role">Étudiante passionnée en Licence Professionnelle Informatique.<br>Je conçois des applications web et mobiles modernes —<br>Flutter, Laravel, Spring Boot, Angular, Python &amp; plus.</p>
+    <p class="hero-role">Étudiante passionnée en Licence Professionnelle Informatique.<br>Je conçois des applications web et mobiles modernes —<br>Flutter, Laravel, Spring Boot, Angular, Python &amp; C.</p>
     <div class="hero-btns">
       <a href="#projects" class="btn btn-gold">↓ Mes projets</a>
       <a href="https://github.com/dorcasouedraogo393-cell/portefolio.git" target="_blank" class="btn btn-outline">⌥ GitHub</a>
@@ -178,11 +159,77 @@ html = '''<!DOCTYPE html>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-screens">
-      <div class="hero-scr"><img src="FLUTTER_PLACEHOLDER" alt="Flutter app"/></div>
-      <div class="hero-scr"><img src="RESTAURANT_PLACEHOLDER" alt="Restaurant"/></div>
-      <div class="hero-scr"><img src="BIBLIO_PLACEHOLDER" alt="Bibliothèque"/></div>
-    </div>
+    <!-- Hero: grille de mini-écrans animés -->
+    <svg viewBox="0 0 460 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="230" cy="240" r="210" fill="rgba(201,169,110,0.025)" stroke="rgba(201,169,110,0.06)" stroke-width="1"/>
+      <circle cx="230" cy="240" r="145" fill="rgba(201,169,110,0.025)" stroke="rgba(201,169,110,0.045)" stroke-width="1"/>
+      <!-- Phone central -->
+      <rect x="155" y="70" width="150" height="310" rx="22" fill="#1a1714" stroke="rgba(201,169,110,0.3)" stroke-width="1.5"/>
+      <rect x="165" y="88" width="130" height="274" rx="12" fill="#0d0c0b"/>
+      <!-- Status bar -->
+      <rect x="165" y="88" width="130" height="20" fill="rgba(201,169,110,0.06)"/>
+      <rect x="174" y="95" width="40" height="5" rx="2.5" fill="rgba(201,169,110,0.5)"/>
+      <rect x="266" y="94" width="20" height="6" rx="3" fill="rgba(201,169,110,0.2)"/>
+      <!-- App header -->
+      <rect x="165" y="108" width="130" height="34" fill="rgba(80,60,200,0.15)"/>
+      <rect x="174" y="118" width="65" height="7" rx="3.5" fill="rgba(130,100,255,0.6)"/>
+      <rect x="174" y="129" width="42" height="5" rx="2.5" fill="rgba(255,255,255,0.2)"/>
+      <!-- Card 1 -->
+      <rect x="173" y="150" width="112" height="56" rx="8" fill="#1a1714" stroke="rgba(130,100,255,0.22)" stroke-width="1"/>
+      <circle cx="191" cy="170" r="11" fill="rgba(130,100,255,0.22)" stroke="rgba(130,100,255,0.4)" stroke-width="1"/>
+      <path d="M187 170 H195 M191 166 V174" stroke="rgba(130,100,255,0.9)" stroke-width="1.8" stroke-linecap="round"/>
+      <rect x="207" y="163" width="55" height="6" rx="3" fill="rgba(255,255,255,0.22)"/>
+      <rect x="207" y="173" width="38" height="5" rx="2.5" fill="rgba(130,100,255,0.45)"/>
+      <rect x="207" y="182" width="45" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <!-- Card 2 -->
+      <rect x="173" y="215" width="112" height="40" rx="8" fill="#1a1714" stroke="rgba(80,180,120,0.2)" stroke-width="1"/>
+      <rect x="181" y="226" width="50" height="5" rx="2.5" fill="rgba(80,180,120,0.5)"/>
+      <rect x="181" y="235" width="35" height="4" rx="2" fill="rgba(255,255,255,0.14)"/>
+      <rect x="247" y="223" width="24" height="24" rx="5" fill="rgba(80,180,120,0.2)"/>
+      <path d="M253 236 L257 240 L264 232" stroke="rgba(80,180,120,0.85)" stroke-width="1.6" stroke-linecap="round"/>
+      <!-- Progress bars -->
+      <rect x="173" y="265" width="112" height="5" rx="2.5" fill="rgba(255,255,255,0.06)"/>
+      <rect x="173" y="265" width="78" height="5" rx="2.5" fill="rgba(201,169,110,0.5)"/>
+      <rect x="173" y="276" width="112" height="5" rx="2.5" fill="rgba(255,255,255,0.06)"/>
+      <rect x="173" y="276" width="48" height="5" rx="2.5" fill="rgba(224,92,75,0.5)"/>
+      <!-- Bottom nav -->
+      <rect x="165" y="328" width="130" height="34" fill="rgba(0,0,0,0.45)"/>
+      <circle cx="193" cy="345" r="6" fill="rgba(201,169,110,0.7)"/>
+      <circle cx="220" cy="345" r="6" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="247" cy="345" r="6" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="274" cy="345" r="6" fill="rgba(255,255,255,0.12)"/>
+      <rect x="198" y="378" width="64" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
+      <!-- Floating card left: browser -->
+      <rect x="28" y="120" width="108" height="72" rx="10" fill="#1a1714" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
+      <rect x="28" y="120" width="108" height="16" rx="10" fill="rgba(201,169,110,0.08)"/>
+      <rect x="28" y="128" width="108" height="8" fill="rgba(201,169,110,0.06)"/>
+      <circle cx="42" cy="128" r="3.5" fill="rgba(224,92,75,0.5)"/>
+      <circle cx="54" cy="128" r="3.5" fill="rgba(201,169,110,0.4)"/>
+      <circle cx="66" cy="128" r="3.5" fill="rgba(100,200,130,0.4)"/>
+      <rect x="36" y="144" width="60" height="5" rx="2.5" fill="rgba(201,169,110,0.4)"/>
+      <rect x="36" y="154" width="80" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+      <rect x="36" y="162" width="65" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+      <!-- Floating card right: terminal -->
+      <rect x="324" y="190" width="108" height="72" rx="10" fill="#0a0508" stroke="rgba(224,92,75,0.22)" stroke-width="1"/>
+      <rect x="324" y="190" width="108" height="16" rx="10" fill="rgba(0,0,0,0.5)"/>
+      <rect x="324" y="198" width="108" height="8" fill="rgba(0,0,0,0.4)"/>
+      <rect x="332" y="214" width="60" height="4" rx="1" fill="rgba(100,255,100,0.4)"/>
+      <rect x="332" y="223" width="80" height="3" rx="1" fill="rgba(201,169,110,0.3)"/>
+      <rect x="332" y="231" width="55" height="3" rx="1" fill="rgba(224,92,75,0.35)"/>
+      <rect x="332" y="239" width="70" height="3" rx="1" fill="rgba(100,180,255,0.3)"/>
+      <!-- Floating card bottom: dashboard -->
+      <rect x="50" y="310" width="90" height="60" rx="10" fill="#1a1714" stroke="rgba(80,180,120,0.22)" stroke-width="1"/>
+      <rect x="58" y="320" width="36" height="18" rx="4" fill="rgba(80,180,120,0.15)"/>
+      <rect x="58" y="342" width="25" height="5" rx="2.5" fill="rgba(80,180,120,0.4)"/>
+      <rect x="58" y="350" width="18" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+      <rect x="102" y="320" width="30" height="18" rx="4" fill="rgba(201,169,110,0.12)"/>
+      <rect x="102" y="342" width="22" height="5" rx="2.5" fill="rgba(201,169,110,0.35)"/>
+      <!-- Decorative dots -->
+      <circle cx="76" cy="270" r="4" fill="rgba(201,169,110,0.28)"/>
+      <circle cx="90" cy="285" r="2.5" fill="rgba(201,169,110,0.16)"/>
+      <circle cx="375" cy="118" r="4" fill="rgba(224,92,75,0.28)"/>
+      <circle cx="390" cy="108" r="2.5" fill="rgba(224,92,75,0.16)"/>
+    </svg>
   </div>
   <div class="hero-bg-text">Dev</div>
 </section>
@@ -194,42 +241,72 @@ html = '''<!DOCTYPE html>
   </div>
 </div>
 
-<!-- COMPÉTENCES -->
+<!-- ══ COMPÉTENCES ══ -->
 <section id="skills">
   <div class="s-eye">// 01 — Compétences</div>
   <h2 class="s-title reveal">Mon arsenal<br><em>technique</em></h2>
   <div class="sk-grid reveal">
-    <div class="sk-cell">
-      <div class="sk-num">01</div><div class="sk-cat">Web</div>
-      <div class="sk-pills"><span class="sk-pill">HTML</span><span class="sk-pill">CSS</span><span class="sk-pill">PHP</span><span class="sk-pill">Laravel</span><span class="sk-pill">Angular</span><span class="sk-pill">Spring Boot</span><span class="sk-pill">Java</span><span class="sk-pill">Python</span></div>
-    </div>
-    <div class="sk-cell">
-      <div class="sk-num">02</div><div class="sk-cat">Mobile</div>
-      <div class="sk-pills"><span class="sk-pill">Flutter</span><span class="sk-pill">Firebase</span><span class="sk-pill">Android Studio</span></div>
-    </div>
-    <div class="sk-cell">
-      <div class="sk-num">03</div><div class="sk-cat">Base de données</div>
-      <div class="sk-pills"><span class="sk-pill">MySQL</span><span class="sk-pill">Firestore</span><span class="sk-pill">Oracle</span></div>
-    </div>
-    <div class="sk-cell">
-      <div class="sk-num">04</div><div class="sk-cat">Outils</div>
-      <div class="sk-pills"><span class="sk-pill">Git</span><span class="sk-pill">Figma</span><span class="sk-pill">VS Code</span><span class="sk-pill">IntelliJ</span><span class="sk-pill">NetBeans</span><span class="sk-pill">Cisco PT</span><span class="sk-pill">Langage C</span></div>
-    </div>
+    <div class="sk-cell"><div class="sk-num">01</div><div class="sk-cat">Web</div><div class="sk-pills"><span class="sk-pill">HTML</span><span class="sk-pill">CSS</span><span class="sk-pill">PHP</span><span class="sk-pill">Laravel</span><span class="sk-pill">Angular</span><span class="sk-pill">Spring Boot</span><span class="sk-pill">Java</span><span class="sk-pill">Python</span></div></div>
+    <div class="sk-cell"><div class="sk-num">02</div><div class="sk-cat">Mobile</div><div class="sk-pills"><span class="sk-pill">Flutter</span><span class="sk-pill">Firebase</span><span class="sk-pill">Android Studio</span></div></div>
+    <div class="sk-cell"><div class="sk-num">03</div><div class="sk-cat">Base de données</div><div class="sk-pills"><span class="sk-pill">MySQL</span><span class="sk-pill">Firestore</span><span class="sk-pill">Oracle</span></div></div>
+    <div class="sk-cell"><div class="sk-num">04</div><div class="sk-cat">Outils</div><div class="sk-pills"><span class="sk-pill">Git</span><span class="sk-pill">Figma</span><span class="sk-pill">VS Code</span><span class="sk-pill">IntelliJ</span><span class="sk-pill">NetBeans</span><span class="sk-pill">Cisco PT</span><span class="sk-pill">Langage C</span></div></div>
   </div>
 </section>
 
-<!-- PROJETS -->
+<!-- ══ PROJETS ══ -->
 <section id="projects">
   <div class="s-eye">// 02 — Projets</div>
-  <h2 class="s-title reveal">Ce que j\'ai<br><em>construit</em></h2>
+  <h2 class="s-title reveal">Ce que j'ai<br><em>construit</em></h2>
   <div class="proj-list">
 
-    <!-- P1 Flutter médical -->
+    <!-- ── P1 Flutter médical ── -->
     <div class="proj-row reveal">
-      <div class="proj-screen">
-        <img src="Capture d'écran 2025-04-30 113743.png" alt="App Flutter rendez-vous médicaux"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Flutter · Mobile</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#09172a 0%,#0a2218 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Phone frame -->
+          <rect x="95" y="10" width="130" height="258" rx="20" fill="#0d1a2e" stroke="rgba(80,210,155,0.4)" stroke-width="1.5"/>
+          <rect x="104" y="26" width="112" height="226" rx="12" fill="#060e18"/>
+          <!-- Top bar -->
+          <rect x="104" y="26" width="112" height="20" fill="rgba(80,210,155,0.08)"/>
+          <rect x="112" y="33" width="55" height="6" rx="3" fill="rgba(80,210,155,0.55)"/>
+          <rect x="186" y="32" width="22" height="8" rx="4" fill="rgba(80,210,155,0.2)"/>
+          <!-- Doctor card -->
+          <rect x="104" y="50" width="112" height="38" fill="rgba(80,210,155,0.07)"/>
+          <circle cx="124" cy="69" r="14" fill="rgba(80,210,155,0.2)" stroke="rgba(80,210,155,0.45)" stroke-width="1"/>
+          <path d="M120 69 H128 M124 65 V73" stroke="rgba(80,210,155,0.9)" stroke-width="2.2" stroke-linecap="round"/>
+          <rect x="143" y="61" width="55" height="7" rx="3.5" fill="rgba(255,255,255,0.25)"/>
+          <rect x="143" y="72" width="38" height="5" rx="2.5" fill="rgba(80,210,155,0.5)"/>
+          <!-- Calendar card -->
+          <rect x="112" y="96" width="96" height="58" rx="8" fill="rgba(0,100,200,0.12)" stroke="rgba(80,150,255,0.22)" stroke-width="1"/>
+          <rect x="120" y="104" width="50" height="7" rx="3.5" fill="rgba(80,150,255,0.5)"/>
+          <rect x="120" y="115" width="35" height="5" rx="2.5" fill="rgba(255,255,255,0.18)"/>
+          <rect x="120" y="124" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.12)"/>
+          <rect x="176" y="102" width="24" height="24" rx="5" fill="rgba(80,210,155,0.2)"/>
+          <path d="M182 115 L186 119 L194 110" stroke="rgba(80,210,155,0.85)" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Stats row -->
+          <rect x="112" y="163" width="42" height="42" rx="7" fill="rgba(80,210,155,0.1)" stroke="rgba(80,210,155,0.18)" stroke-width="1"/>
+          <rect x="118" y="175" width="28" height="7" rx="3.5" fill="rgba(80,210,155,0.55)"/>
+          <rect x="118" y="186" width="18" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="162" y="163" width="46" height="42" rx="7" fill="rgba(224,92,75,0.1)" stroke="rgba(224,92,75,0.18)" stroke-width="1"/>
+          <rect x="168" y="175" width="32" height="7" rx="3.5" fill="rgba(224,92,75,0.5)"/>
+          <rect x="168" y="186" width="22" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <!-- Bottom nav -->
+          <rect x="104" y="220" width="112" height="32" fill="rgba(0,0,0,0.45)"/>
+          <circle cx="128" cy="236" r="6" fill="rgba(80,210,155,0.7)"/>
+          <circle cx="153" cy="236" r="6" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="178" cy="236" r="6" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="203" cy="236" r="6" fill="rgba(255,255,255,0.12)"/>
+          <rect x="142" y="262" width="36" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
+          <!-- Chat bubble left -->
+          <rect x="18" y="110" width="62" height="36" rx="8" fill="rgba(80,210,155,0.12)" stroke="rgba(80,210,155,0.25)" stroke-width="1"/>
+          <rect x="26" y="120" width="44" height="4" rx="2" fill="rgba(255,255,255,0.22)"/>
+          <rect x="26" y="128" width="30" height="4" rx="2" fill="rgba(80,210,155,0.45)"/>
+          <polygon points="28,146 38,146 28,156" fill="rgba(80,210,155,0.12)" stroke="rgba(80,210,155,0.2)" stroke-width="1"/>
+          <!-- Notification right -->
+          <rect x="240" y="88" width="64" height="34" rx="8" fill="rgba(224,92,75,0.12)" stroke="rgba(224,92,75,0.3)" stroke-width="1"/>
+          <rect x="248" y="99" width="44" height="4" rx="2" fill="rgba(255,255,255,0.22)"/>
+          <rect x="248" y="107" width="30" height="4" rx="2" fill="rgba(224,92,75,0.5)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">01</div>
@@ -240,174 +317,454 @@ html = '''<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- P2 Restaurant Spring Boot -->
+    <!-- ── P2 Restaurant Spring Boot ── -->
     <div class="proj-row reverse reveal">
-      <div class="proj-screen">
-        <img src="RESTAURANT_PLACEHOLDER" alt="App Restaurant Spring Boot Angular"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Spring Boot · Angular</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#1a0c0a 0%,#2a1208 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Browser -->
+          <rect x="18" y="22" width="284" height="220" rx="10" fill="#110806" stroke="rgba(224,92,75,0.3)" stroke-width="1.5"/>
+          <rect x="18" y="22" width="284" height="26" rx="10" fill="rgba(224,92,75,0.1)"/>
+          <rect x="18" y="38" width="284" height="10" fill="rgba(224,92,75,0.08)"/>
+          <circle cx="38" cy="35" r="5" fill="rgba(224,92,75,0.6)"/><circle cx="56" cy="35" r="5" fill="rgba(201,169,110,0.4)"/><circle cx="74" cy="35" r="5" fill="rgba(100,200,160,0.4)"/>
+          <rect x="96" y="30" width="140" height="12" rx="6" fill="rgba(255,255,255,0.05)"/>
+          <!-- Sidebar -->
+          <rect x="18" y="48" width="66" height="194" fill="rgba(0,0,0,0.35)"/>
+          <rect x="26" y="62" width="50" height="8" rx="4" fill="rgba(224,92,75,0.55)"/>
+          <rect x="26" y="76" width="42" height="5" rx="2.5" fill="rgba(255,255,255,0.16)"/>
+          <rect x="26" y="87" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="98" width="38" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="109" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="120" width="36" height="5" rx="2.5" fill="rgba(255,255,255,0.08)"/>
+          <!-- Main header -->
+          <rect x="92" y="56" width="202" height="22" fill="rgba(224,92,75,0.07)"/>
+          <rect x="100" y="64" width="90" height="8" rx="4" fill="rgba(224,92,75,0.45)"/>
+          <!-- Menu cards -->
+          <rect x="92" y="86" width="92" height="80" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(224,92,75,0.18)" stroke-width="1"/>
+          <rect x="100" y="94" width="76" height="40" rx="5" fill="rgba(224,92,75,0.12)"/>
+          <rect x="100" y="140" width="55" height="6" rx="3" fill="rgba(255,255,255,0.22)"/>
+          <rect x="100" y="150" width="38" height="5" rx="2.5" fill="rgba(224,92,75,0.5)"/>
+          <rect x="196" y="86" width="92" height="80" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(201,169,110,0.18)" stroke-width="1"/>
+          <rect x="204" y="94" width="76" height="40" rx="5" fill="rgba(201,169,110,0.12)"/>
+          <rect x="204" y="140" width="55" height="6" rx="3" fill="rgba(255,255,255,0.22)"/>
+          <rect x="204" y="150" width="38" height="5" rx="2.5" fill="rgba(201,169,110,0.5)"/>
+          <!-- Order table -->
+          <rect x="92" y="176" width="202" height="14" fill="rgba(255,255,255,0.05)"/>
+          <rect x="100" y="180" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+          <rect x="160" y="180" width="36" height="5" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+          <rect x="218" y="180" width="30" height="5" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+          <rect x="92" y="192" width="202" height="12" fill="rgba(255,255,255,0.03)"/>
+          <rect x="100" y="196" width="38" height="4" rx="2" fill="rgba(255,255,255,0.16)"/>
+          <rect x="160" y="196" width="28" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="218" y="196" width="32" height="4" rx="2" fill="rgba(100,200,160,0.5)"/>
+          <rect x="92" y="205" width="202" height="12" fill="rgba(0,0,0,0.12)"/>
+          <rect x="100" y="209" width="42" height="4" rx="2" fill="rgba(255,255,255,0.14)"/>
+          <rect x="160" y="209" width="30" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="218" y="209" width="32" height="4" rx="2" fill="rgba(224,92,75,0.5)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">02</div>
         <div class="proj-tag">Spring Boot · Angular · Fullstack</div>
         <h3 class="proj-title">Application de Gestion de Restaurant</h3>
-        <p class="proj-desc">Application web fullstack : menu interactif, gestion des commandes, panier client et paiements. Architecture frontend/backend séparée avec API REST sécurisée.</p>
+        <p class="proj-desc">Application web fullstack : menu interactif, commandes en ligne, gestion du panier et des paiements. Architecture frontend/backend séparée avec API REST sécurisée.</p>
         <div class="proj-stack"><span class="s-tag">Spring Boot</span><span class="s-tag">Angular</span><span class="s-tag">API REST</span><span class="s-tag">MySQL</span></div>
       </div>
     </div>
 
-    <!-- P3 StyleCanvas vêtements -->
+    <!-- ── P3 StyleCanvas vêtements ── -->
     <div class="proj-row reveal">
-      <div class="proj-screen">
-        <img src="STYLE_PLACEHOLDER" alt="StyleCanvas personnalisation vêtements"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Spring Boot · Angular</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#14082a 0%,#1e0c38 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Browser frame -->
+          <rect x="18" y="22" width="284" height="220" rx="10" fill="#0e0618" stroke="rgba(160,80,255,0.3)" stroke-width="1.5"/>
+          <rect x="18" y="22" width="284" height="26" rx="10" fill="rgba(160,80,255,0.1)"/>
+          <rect x="18" y="38" width="284" height="10" fill="rgba(160,80,255,0.08)"/>
+          <circle cx="38" cy="35" r="5" fill="rgba(224,92,75,.55)"/><circle cx="56" cy="35" r="5" fill="rgba(201,169,110,.4)"/><circle cx="74" cy="35" r="5" fill="rgba(160,80,255,.5)"/>
+          <rect x="96" y="29" width="130" height="14" rx="7" fill="rgba(160,80,255,0.15)"/>
+          <rect x="100" y="33" width="122" height="6" rx="3" fill="rgba(160,80,255,0.25)"/>
+          <!-- Logo area -->
+          <rect x="18" y="48" width="284" height="28" fill="rgba(160,80,255,0.07)"/>
+          <circle cx="38" cy="62" r="9" fill="rgba(160,80,255,0.3)" stroke="rgba(160,80,255,0.5)" stroke-width="1"/>
+          <rect x="54" y="58" width="70" height="8" rx="4" fill="rgba(160,80,255,0.55)"/>
+          <rect x="54" y="68" width="48" height="5" rx="2.5" fill="rgba(255,255,255,0.2)"/>
+          <rect x="222" y="56" width="68" height="16" rx="8" fill="rgba(160,80,255,0.35)"/>
+          <rect x="230" y="61" width="52" height="6" rx="3" fill="rgba(255,255,255,0.5)"/>
+          <!-- T-shirt canvas area -->
+          <rect x="28" y="84" width="150" height="148" rx="8" fill="rgba(160,80,255,0.06)" stroke="rgba(160,80,255,0.15)" stroke-width="1"/>
+          <!-- Shirt shape SVG -->
+          <path d="M72 104 L96 96 L120 104 M96 96 L96 200 M72 104 L60 130 L72 130 L72 200 M120 104 L132 130 L120 130 L120 200 L72 200" stroke="rgba(160,80,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(160,80,255,0.1)"/>
+          <!-- Panel right -->
+          <rect x="186" y="84" width="116" height="148" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(160,80,255,0.12)" stroke-width="1"/>
+          <!-- Tabs -->
+          <rect x="194" y="92" width="24" height="20" rx="5" fill="rgba(160,80,255,0.4)"/>
+          <rect x="222" y="92" width="24" height="20" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="250" y="92" width="24" height="20" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="278" y="92" width="18" height="20" rx="5" fill="rgba(255,255,255,0.06)"/>
+          <rect x="194" y="120" width="96" height="6" rx="3" fill="rgba(160,80,255,0.4)"/>
+          <!-- Color buttons -->
+          <circle cx="200" cy="142" r="8" fill="rgba(160,80,255,0.7)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <circle cx="222" cy="142" r="8" fill="rgba(224,92,75,0.7)"/>
+          <circle cx="244" cy="142" r="8" fill="rgba(100,200,160,0.7)"/>
+          <circle cx="266" cy="142" r="8" fill="rgba(201,169,110,0.7)"/>
+          <!-- Type buttons -->
+          <rect x="194" y="160" width="46" height="16" rx="4" fill="rgba(160,80,255,0.4)"/>
+          <rect x="246" y="160" width="46" height="16" rx="4" fill="rgba(255,255,255,0.06)"/>
+          <rect x="194" y="182" width="46" height="16" rx="4" fill="rgba(255,255,255,0.06)"/>
+          <rect x="246" y="182" width="46" height="16" rx="4" fill="rgba(255,255,255,0.06)"/>
+          <rect x="194" y="204" width="98" height="20" rx="5" fill="rgba(160,80,255,0.3)"/>
+          <rect x="222" y="210" width="42" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">03</div>
         <div class="proj-tag">Spring Boot · Angular · E-commerce</div>
-        <h3 class="proj-title">StyleCanvas — Personnalisation de Vêtements</h3>
-        <p class="proj-desc">Plateforme créative de personnalisation de vêtements en ligne. Sélection du type de canevas (chemise, pantalon, veste…), palette atelier, gestion du panier et commande en ligne.</p>
+        <h3 class="proj-title"> Personnalisation de Vêtements</h3>
+        <p class="proj-desc">Plateforme créative de personnalisation de vêtements en ligne. Sélection du type (chemise, pantalon, veste…), palette atelier, gestion du panier et commande.</p>
         <div class="proj-stack"><span class="s-tag">Spring Boot</span><span class="s-tag">Angular</span><span class="s-tag">Figma</span><span class="s-tag">MySQL</span></div>
       </div>
     </div>
 
-    <!-- P4 Python analytics -->
+    <!-- ── P4 Python Sales Analytics ── -->
     <div class="proj-row reverse reveal">
-      <div class="proj-screen">
-        <img src="Capture d'écran 2026-04-19 230826.png" alt="Dashboard Python Sales Analytics"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Python · Data Analytics</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#091420 0%,#0e1a10 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Window -->
+          <rect x="14" y="18" width="292" height="236" rx="8" fill="#060c10" stroke="rgba(100,200,100,0.25)" stroke-width="1.5"/>
+          <rect x="14" y="18" width="292" height="24" rx="8" fill="rgba(0,0,0,0.5)"/>
+          <rect x="14" y="32" width="292" height="10" fill="rgba(0,0,0,0.35)"/>
+          <rect x="22" y="24" width="180" height="8" rx="4" fill="rgba(100,200,100,0.25)"/>
+          <!-- Stats row -->
+          <rect x="22" y="52" width="64" height="44" rx="5" fill="rgba(100,200,100,0.15)" stroke="rgba(100,200,100,0.2)" stroke-width="1"/>
+          <rect x="30" y="62" width="48" height="10" rx="5" fill="rgba(100,200,100,0.5)"/>
+          <rect x="30" y="76" width="36" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
+          <rect x="96" y="52" width="64" height="44" rx="5" fill="rgba(100,160,255,0.12)" stroke="rgba(100,160,255,0.2)" stroke-width="1"/>
+          <rect x="104" y="62" width="48" height="10" rx="5" fill="rgba(100,160,255,0.5)"/>
+          <rect x="104" y="76" width="36" height="6" rx="3" fill="rgba(255,255,255,0.18)"/>
+          <rect x="170" y="52" width="64" height="44" rx="5" fill="rgba(224,92,75,0.12)" stroke="rgba(224,92,75,0.2)" stroke-width="1"/>
+          <rect x="178" y="62" width="48" height="10" rx="5" fill="rgba(224,92,75,0.5)"/>
+          <rect x="178" y="76" width="36" height="6" rx="3" fill="rgba(255,255,255,0.18)"/>
+          <rect x="244" y="52" width="56" height="44" rx="5" fill="rgba(201,169,110,0.12)" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
+          <rect x="252" y="62" width="38" height="10" rx="5" fill="rgba(201,169,110,0.5)"/>
+          <rect x="252" y="76" width="28" height="6" rx="3" fill="rgba(255,255,255,0.18)"/>
+          <!-- Bar chart -->
+          <rect x="22" y="108" width="170" height="80" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(100,200,100,0.1)" stroke-width="1"/>
+          <rect x="30" y="112" width="80" height="6" rx="3" fill="rgba(100,200,100,0.4)"/>
+          <!-- Bars -->
+          <rect x="34" y="148" width="16" height="32" rx="2" fill="rgba(100,200,100,0.5)"/>
+          <rect x="56" y="138" width="16" height="42" rx="2" fill="rgba(100,160,255,0.5)"/>
+          <rect x="78" y="130" width="16" height="50" rx="2" fill="rgba(224,92,75,0.5)"/>
+          <rect x="100" y="143" width="16" height="37" rx="2" fill="rgba(201,169,110,0.5)"/>
+          <rect x="122" y="133" width="16" height="47" rx="2" fill="rgba(100,200,100,0.5)"/>
+          <rect x="144" y="126" width="16" height="54" rx="2" fill="rgba(130,80,255,0.5)"/>
+          <rect x="166" y="140" width="14" height="40" rx="2" fill="rgba(255,160,80,0.5)"/>
+          <!-- Table right -->
+          <rect x="202" y="108" width="104" height="80" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(100,200,100,0.1)" stroke-width="1"/>
+          <rect x="210" y="116" width="60" height="5" rx="2.5" fill="rgba(100,200,100,0.4)"/>
+          <rect x="210" y="130" width="88" height="4" rx="2" fill="rgba(255,255,255,0.16)"/>
+          <rect x="210" y="139" width="88" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="210" y="148" width="88" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="210" y="157" width="88" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="210" y="166" width="70" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
+          <!-- Line chart bottom -->
+          <rect x="22" y="200" width="284" height="46" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(100,200,100,0.1)" stroke-width="1"/>
+          <polyline points="30,234 60,224 90,230 120,214 150,218 180,208 210,212 240,202 270,206 298,196" stroke="rgba(100,200,100,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <polyline points="30,234 60,224 90,230 120,214 150,218 180,208 210,212 240,202 270,206 298,196 298,244 30,244" fill="rgba(100,200,100,0.06)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">04</div>
         <div class="proj-tag">Python · Data Analysis · Dashboard</div>
-        <h3 class="proj-title">Sales Analytics Dashboard FCFA</h3>
-        <p class="proj-desc">Tableau de bord analytique complet pour une entreprise de vente. Indicateurs clés (CA, ventes, articles), 9 graphiques de visualisation, rapport analytique exportable et analyse par catégorie.</p>
+        <h3 class="proj-title"> Analytics Dashboard </h3>
+        <p class="proj-desc">Tableau de bord analytique complet pour une entreprise de vente. Indicateurs clés (CA, ventes, articles), 9 graphiques, rapport analytique exportable et analyse par catégorie.</p>
         <div class="proj-stack"><span class="s-tag">Python</span><span class="s-tag">Pandas</span><span class="s-tag">Matplotlib</span><span class="s-tag">Data Analysis</span></div>
       </div>
     </div>
 
-    <!-- P5 VoixPro -->
+    <!-- ── P5 VoixProConnect ── -->
     <div class="proj-row reveal">
-      <div class="proj-screen">
-        <img src="VOIX_PLACEHOLDER" alt="VoixProConnect plateforme voix-off"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Spring Boot · Angular</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#0a1020 0%,#0e0820 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Browser -->
+          <rect x="18" y="22" width="284" height="220" rx="10" fill="#080610" stroke="rgba(100,140,255,0.28)" stroke-width="1.5"/>
+          <rect x="18" y="22" width="284" height="26" rx="10" fill="rgba(100,140,255,0.08)"/>
+          <rect x="18" y="38" width="284" height="10" fill="rgba(100,140,255,0.06)"/>
+          <circle cx="38" cy="35" r="5" fill="rgba(224,92,75,.5)"/><circle cx="56" cy="35" r="5" fill="rgba(201,169,110,.4)"/><circle cx="74" cy="35" r="5" fill="rgba(100,200,160,.4)"/>
+          <!-- Nav -->
+          <rect x="18" y="48" width="284" height="30" fill="rgba(100,140,255,0.06)"/>
+          <rect x="30" y="58" width="90" height="10" rx="5" fill="rgba(100,140,255,0.5)"/>
+          <rect x="140" y="60" width="50" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="200" y="60" width="40" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
+          <rect x="252" y="55" width="40" height="16" rx="8" fill="rgba(100,140,255,0.4)"/>
+          <rect x="258" y="60" width="28" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+          <!-- Hero text -->
+          <rect x="30" y="88" width="180" height="16" rx="8" fill="rgba(255,255,255,0.3)"/>
+          <rect x="30" y="108" width="200" height="12" rx="6" fill="rgba(100,140,255,0.5)"/>
+          <rect x="30" y="126" width="160" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="30" y="136" width="140" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
+          <!-- CTA buttons -->
+          <rect x="30" y="150" width="90" height="20" rx="10" fill="rgba(100,140,255,0.4)"/>
+          <rect x="36" y="156" width="78" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+          <rect x="128" y="150" width="80" height="20" rx="10" fill="rgba(255,255,255,0.06)" stroke="rgba(100,140,255,0.3)" stroke-width="1"/>
+          <!-- Artist cards right -->
+          <rect x="220" y="80" width="74" height="96" rx="8" fill="rgba(100,140,255,0.08)" stroke="rgba(100,140,255,0.18)" stroke-width="1"/>
+          <circle cx="257" cy="106" r="20" fill="rgba(100,140,255,0.2)" stroke="rgba(100,140,255,0.3)" stroke-width="1"/>
+          <!-- Sound waves -->
+          <path d="M244 106 Q250 96 257 106 Q264 116 270 106" stroke="rgba(100,200,255,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M240 106 Q250 90 257 106 Q264 122 274 106" stroke="rgba(100,200,255,0.35)" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <rect x="228" y="132" width="58" height="5" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+          <rect x="228" y="141" width="38" height="4" rx="2" fill="rgba(100,140,255,0.45)"/>
+          <rect x="228" y="150" width="58" height="14" rx="7" fill="rgba(100,140,255,0.3)"/>
+          <rect x="236" y="154" width="42" height="5" rx="2.5" fill="rgba(255,255,255,0.4)"/>
+          <!-- AI tag -->
+          <rect x="30" y="178" width="100" height="18" rx="9" fill="rgba(100,140,255,0.12)" stroke="rgba(100,140,255,0.25)" stroke-width="1"/>
+          <rect x="38" y="184" width="84" height="6" rx="3" fill="rgba(100,200,255,0.4)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">05</div>
         <div class="proj-tag">Spring Boot · Angular · Plateforme</div>
         <h3 class="proj-title">VoixProConnect — Mise en Relation Voix-Off</h3>
-        <p class="proj-desc">Plateforme web de mise en relation entre clients et artistes voix-off. Recherche d\'artistes, matching IA, gestion de profils, système de notifications et espace artiste intégré.</p>
+        <p class="proj-desc">Plateforme web de mise en relation entre clients et artistes voix-off. Recherche d'artistes, matching IA, gestion de profils, système de notifications et espace artiste.</p>
         <div class="proj-stack"><span class="s-tag">Spring Boot</span><span class="s-tag">Angular</span><span class="s-tag">API REST</span><span class="s-tag">MySQL</span></div>
       </div>
     </div>
 
-    <!-- P6 Laravel bibliothèque -->
+    <!-- ── P6 Laravel Bibliothèque ── -->
     <div class="proj-row reverse reveal">
-      <div class="proj-screen">
-        <img src="Capture d'écran 2025-11-20 001443.png" alt="Laravel Bibliothèque UCAO"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Laravel · PHP</div>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#0c1022 0%,#14102a 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Browser frame -->
+          <rect x="18" y="22" width="284" height="220" rx="10" fill="#09081a" stroke="rgba(123,97,255,0.3)" stroke-width="1.5"/>
+          <rect x="18" y="22" width="284" height="26" rx="10" fill="rgba(123,97,255,0.1)"/>
+          <rect x="18" y="38" width="284" height="10" fill="rgba(123,97,255,0.08)"/>
+          <circle cx="38" cy="35" r="5" fill="rgba(224,92,75,.5)"/><circle cx="56" cy="35" r="5" fill="rgba(201,169,110,.4)"/><circle cx="74" cy="35" r="5" fill="rgba(100,200,160,.4)"/>
+          <!-- Nav bar -->
+          <rect x="18" y="48" width="284" height="28" fill="rgba(123,97,255,0.07)"/>
+          <rect x="28" y="56" width="90" height="12" rx="6" fill="rgba(123,97,255,0.45)"/>
+          <rect x="200" y="57" width="70" height="14" rx="7" fill="rgba(123,97,255,0.3)"/>
+          <rect x="208" y="61" width="54" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+          <!-- Search bar -->
+          <rect x="28" y="85" width="200" height="18" rx="9" fill="rgba(255,255,255,0.05)" stroke="rgba(123,97,255,0.2)" stroke-width="1"/>
+          <rect x="38" y="91" width="100" height="6" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="236" y="85" width="52" height="18" rx="9" fill="rgba(123,97,255,0.3)"/>
+          <!-- Books grid -->
+          <rect x="28" y="114" width="60" height="84" rx="7" fill="rgba(123,97,255,0.14)" stroke="rgba(123,97,255,0.22)" stroke-width="1"/>
+          <rect x="34" y="120" width="48" height="48" rx="4" fill="rgba(123,97,255,0.2)"/>
+          <rect x="34" y="173" width="34" height="6" rx="3" fill="rgba(255,255,255,0.28)"/>
+          <rect x="34" y="183" width="24" height="4" rx="2" fill="rgba(123,97,255,0.5)"/>
+          <rect x="100" y="114" width="60" height="84" rx="7" fill="rgba(201,169,110,0.1)" stroke="rgba(201,169,110,0.22)" stroke-width="1"/>
+          <rect x="106" y="120" width="48" height="48" rx="4" fill="rgba(201,169,110,0.16)"/>
+          <rect x="106" y="173" width="34" height="6" rx="3" fill="rgba(255,255,255,0.28)"/>
+          <rect x="106" y="183" width="24" height="4" rx="2" fill="rgba(201,169,110,0.5)"/>
+          <rect x="172" y="114" width="60" height="84" rx="7" fill="rgba(100,200,160,0.1)" stroke="rgba(100,200,160,0.2)" stroke-width="1"/>
+          <rect x="178" y="120" width="48" height="48" rx="4" fill="rgba(100,200,160,0.14)"/>
+          <rect x="178" y="173" width="34" height="6" rx="3" fill="rgba(255,255,255,0.28)"/>
+          <rect x="178" y="183" width="24" height="4" rx="2" fill="rgba(100,200,160,0.5)"/>
+          <rect x="244" y="114" width="52" height="84" rx="7" fill="rgba(224,92,75,0.1)" stroke="rgba(224,92,75,0.2)" stroke-width="1"/>
+          <rect x="250" y="120" width="40" height="48" rx="4" fill="rgba(224,92,75,0.14)"/>
+          <rect x="250" y="173" width="30" height="6" rx="3" fill="rgba(255,255,255,0.28)"/>
+          <rect x="250" y="183" width="22" height="4" rx="2" fill="rgba(224,92,75,0.5)"/>
+          <!-- Footer panel -->
+          <rect x="28" y="208" width="266" height="26" rx="6" fill="rgba(123,97,255,0.07)" stroke="rgba(123,97,255,0.14)" stroke-width="1"/>
+          <rect x="38" y="217" width="60" height="5" rx="2.5" fill="rgba(123,97,255,0.5)"/>
+          <rect x="110" y="217" width="90" height="5" rx="2.5" fill="rgba(255,255,255,0.14)"/>
+          <rect x="230" y="214" width="56" height="14" rx="7" fill="rgba(123,97,255,0.3)"/>
+          <rect x="238" y="218" width="40" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+        </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">06</div>
         <div class="proj-tag">Laravel · PHP · Web</div>
-        <h3 class="proj-title">Bibliothèque UCAO — Gestion de Bibliothèque</h3>
+        <h3 class="proj-title">Bibliothèque UCAO</h3>
         <p class="proj-desc">Application web MVC complète avec recherche de livres, gestion des emprunts, tableau de bord multi-rôles (bibliothécaire/client) et interface publique.</p>
         <div class="proj-stack"><span class="s-tag">Laravel</span><span class="s-tag">PHP</span><span class="s-tag">MySQL</span><span class="s-tag">MVC</span></div>
       </div>
     </div>
 
-    <!-- P7 Java Hardware -->
+    <!-- ── P7 Pharmacie Angular ── -->
     <div class="proj-row reveal">
-      <div class="proj-screen">
-        <img src="Capture d'écran 2026-05-14 121109.png" alt="Hardware & co Java"/>
-        <div class="proj-screen-overlay"></div>
-        <div class="proj-screen-badge">Java · Desktop</div>
-      </div>
-      <div class="proj-info">
-        <div class="proj-num">07</div>
-        <div class="proj-tag">Java · POO · Desktop</div>
-        <h3 class="proj-title">Hardware &amp; Co — Gestion de Quincaillerie</h3>
-        <p class="proj-desc">Application desktop Java orientée objets pour gérer produits, ventes, factures, stocks et fournisseurs d\'une quincaillerie. Interface graphique complète avec persistance MySQL.</p>
-        <div class="proj-stack"><span class="s-tag">Java</span><span class="s-tag">POO</span><span class="s-tag">MySQL</span><span class="s-tag">NetBeans</span></div>
-      </div>
-    </div>
-
-    <!-- P8 Pharmacie Angular - SVG fallback -->
-    <div class="proj-row reverse reveal">
-      <div class="proj-illus" style="background:linear-gradient(135deg,#0a1820,#0d2215)">
-        <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="20" y="25" width="260" height="195" rx="10" fill="#080f18" stroke="rgba(30,200,120,0.28)" stroke-width="1.5"/>
-          <rect x="20" y="25" width="260" height="26" rx="10" fill="rgba(30,200,120,0.1)"/>
-          <circle cx="40" cy="38" r="5" fill="rgba(224,92,75,.5)"/><circle cx="58" cy="38" r="5" fill="rgba(201,169,110,.4)"/><circle cx="76" cy="38" r="5" fill="rgba(30,200,120,.5)"/>
-          <text x="105" y="42" fill="rgba(30,200,120,0.6)" font-size="9" font-family="sans-serif" font-weight="bold">Pharmacie Plus</text>
-          <rect x="20" y="51" width="260" height="169" fill="rgba(0,0,0,0.1)"/>
-          <rect x="30" y="62" width="70" height="148" rx="6" fill="rgba(30,200,120,0.07)" stroke="rgba(30,200,120,0.15)" stroke-width="1"/>
-          <rect x="36" y="70" width="56" height="7" rx="3.5" fill="rgba(30,200,120,0.5)"/>
-          <rect x="36" y="83" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
-          <rect x="36" y="93" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
-          <rect x="36" y="103" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
-          <rect x="36" y="113" width="48" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
-          <rect x="108" y="62" width="164" height="50" rx="6" fill="rgba(30,200,120,0.05)" stroke="rgba(30,200,120,0.12)" stroke-width="1"/>
-          <rect x="116" y="72" width="60" height="10" rx="5" fill="rgba(30,200,120,0.4)"/>
-          <rect x="116" y="87" width="40" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
-          <rect x="108" y="120" width="76" height="80" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(30,200,120,0.1)" stroke-width="1"/>
-          <rect x="116" y="130" width="60" height="28" rx="4" fill="rgba(30,200,120,0.1)"/>
-          <path d="M140 140 H148 M144 136 V144" stroke="rgba(30,200,120,0.8)" stroke-width="2" stroke-linecap="round"/>
-          <rect x="116" y="163" width="42" height="5" rx="2.5" fill="rgba(255,255,255,0.2)"/>
-          <rect x="116" y="172" width="28" height="4" rx="2" fill="rgba(30,200,120,0.4)"/>
-          <rect x="192" y="120" width="80" height="80" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(30,200,120,0.1)" stroke-width="1"/>
-          <rect x="200" y="130" width="64" height="28" rx="4" fill="rgba(201,169,110,0.1)"/>
-          <rect x="200" y="163" width="42" height="5" rx="2.5" fill="rgba(255,255,255,0.2)"/>
-          <rect x="200" y="172" width="28" height="4" rx="2" fill="rgba(201,169,110,0.4)"/>
+      <div class="proj-illus" style="background:linear-gradient(135deg,#081820 0%,#0a2215 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Browser -->
+          <rect x="18" y="22" width="284" height="220" rx="10" fill="#060e14" stroke="rgba(30,200,120,0.28)" stroke-width="1.5"/>
+          <rect x="18" y="22" width="284" height="26" rx="10" fill="rgba(30,200,120,0.09)"/>
+          <circle cx="38" cy="35" r="5" fill="rgba(224,92,75,.5)"/><circle cx="56" cy="35" r="5" fill="rgba(201,169,110,.4)"/><circle cx="74" cy="35" r="5" fill="rgba(30,200,120,.5)"/>
+          <rect x="92" y="30" width="140" height="12" rx="6" fill="rgba(30,200,120,0.12)"/>
+          <rect x="96" y="34" width="132" height="4" rx="2" fill="rgba(30,200,120,0.22)"/>
+          <!-- Navbar -->
+          <rect x="18" y="48" width="284" height="28" fill="rgba(30,200,120,0.06)"/>
+          <rect x="28" y="55" width="100" height="14" rx="7" fill="rgba(30,200,120,0.4)"/>
+          <rect x="36" y="59" width="84" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+          <rect x="248" y="55" width="44" height="14" rx="7" fill="rgba(30,200,120,0.25)"/>
+          <!-- Sidebar -->
+          <rect x="18" y="76" width="68" height="166" fill="rgba(0,0,0,0.3)"/>
+          <rect x="26" y="88" width="52" height="7" rx="3.5" fill="rgba(30,200,120,0.55)"/>
+          <rect x="26" y="102" width="44" height="5" rx="2.5" fill="rgba(255,255,255,0.16)"/>
+          <rect x="26" y="113" width="48" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="124" width="40" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="135" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.11)"/>
+          <rect x="26" y="146" width="36" height="5" rx="2.5" fill="rgba(255,255,255,0.08)"/>
+          <!-- Med cards -->
+          <rect x="95" y="84" width="84" height="70" rx="8" fill="rgba(30,200,120,0.08)" stroke="rgba(30,200,120,0.18)" stroke-width="1"/>
+          <rect x="103" y="92" width="68" height="32" rx="5" fill="rgba(30,200,120,0.12)"/>
+          <path d="M130 102 H142 M136 96 V108" stroke="rgba(30,200,120,0.8)" stroke-width="2.2" stroke-linecap="round"/>
+          <rect x="103" y="130" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.25)"/>
+          <rect x="103" y="140" width="35" height="4" rx="2" fill="rgba(30,200,120,0.45)"/>
+          <rect x="191" y="84" width="84" height="70" rx="8" fill="rgba(201,169,110,0.08)" stroke="rgba(201,169,110,0.18)" stroke-width="1"/>
+          <rect x="199" y="92" width="68" height="32" rx="5" fill="rgba(201,169,110,0.12)"/>
+          <rect x="199" y="130" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.25)"/>
+          <rect x="199" y="140" width="35" height="4" rx="2" fill="rgba(201,169,110,0.45)"/>
+          <!-- Prescription area -->
+          <rect x="95" y="165" width="207" height="68" rx="8" fill="rgba(30,200,120,0.05)" stroke="rgba(30,200,120,0.12)" stroke-width="1"/>
+          <rect x="103" y="173" width="80" height="6" rx="3" fill="rgba(30,200,120,0.4)"/>
+          <rect x="103" y="185" width="180" height="4" rx="2" fill="rgba(255,255,255,0.14)"/>
+          <rect x="103" y="194" width="160" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="103" y="203" width="140" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="103" y="216" width="50" height="12" rx="6" fill="rgba(30,200,120,0.3)"/>
+          <rect x="109" y="220" width="38" height="5" rx="2.5" fill="rgba(255,255,255,0.4)"/>
         </svg>
       </div>
       <div class="proj-info">
-        <div class="proj-num">08</div>
-        <div class="proj-tag">Angular · Web App</div>
+        <div class="proj-num">07</div>
+        <div class="proj-tag">Angular · TypeScript · Web</div>
         <h3 class="proj-title">Gestion de Pharmacie</h3>
         <p class="proj-desc">Application web de gestion de pharmacie avec Angular. Catalogue de médicaments, gestion des stocks, ordonnances, clients et tableau de bord administrateur.</p>
         <div class="proj-stack"><span class="s-tag">Angular</span><span class="s-tag">TypeScript</span><span class="s-tag">MySQL</span><span class="s-tag">API REST</span></div>
       </div>
     </div>
 
-    <!-- P9 Surveillance CPU en C - SVG fallback -->
+    <!-- ── P8 Java Hardware ── -->
+    <div class="proj-row reverse reveal">
+      <div class="proj-illus" style="background:linear-gradient(135deg,#120f06 0%,#1c1508 100%)">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Desktop window -->
+          <rect x="14" y="16" width="292" height="240" rx="8" fill="#0e0c06" stroke="rgba(201,169,110,0.3)" stroke-width="1.5"/>
+          <rect x="14" y="16" width="292" height="24" rx="8" fill="rgba(201,169,110,0.1)"/>
+          <rect x="14" y="30" width="292" height="10" fill="rgba(201,169,110,0.07)"/>
+          <circle cx="32" cy="28" r="5" fill="rgba(224,92,75,.5)"/><circle cx="50" cy="28" r="5" fill="rgba(201,169,110,.4)"/><circle cx="68" cy="28" r="5" fill="rgba(100,200,160,.4)"/>
+          <rect x="110" y="22" width="120" height="12" rx="6" fill="rgba(201,169,110,0.1)"/>
+          <rect x="114" y="26" width="112" height="4" rx="2" fill="rgba(201,169,110,0.18)"/>
+          <!-- Menu bar -->
+          <rect x="14" y="40" width="292" height="18" fill="rgba(0,0,0,0.3)"/>
+          <rect x="22" y="46" width="35" height="6" rx="3" fill="rgba(255,255,255,0.25)"/>
+          <rect x="64" y="46" width="38" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <rect x="108" y="46" width="30" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <!-- Table header -->
+          <rect x="14" y="58" width="292" height="16" fill="rgba(201,169,110,0.1)"/>
+          <rect x="22" y="63" width="48" height="5" rx="2.5" fill="rgba(201,169,110,0.6)"/>
+          <rect x="82" y="63" width="40" height="5" rx="2.5" fill="rgba(201,169,110,0.4)"/>
+          <rect x="140" y="63" width="36" height="5" rx="2.5" fill="rgba(201,169,110,0.4)"/>
+          <rect x="196" y="63" width="44" height="5" rx="2.5" fill="rgba(201,169,110,0.4)"/>
+          <rect x="256" y="63" width="40" height="5" rx="2.5" fill="rgba(201,169,110,0.4)"/>
+          <!-- Table rows x6 -->
+          <rect x="14" y="76" width="292" height="14" fill="rgba(255,255,255,0.025)"/>
+          <rect x="22" y="81" width="44" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+          <rect x="82" y="81" width="32" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="81" width="28" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="196" y="81" width="36" height="4" rx="2" fill="rgba(100,200,160,0.45)"/>
+          <rect x="14" y="91" width="292" height="14" fill="rgba(0,0,0,0.14)"/>
+          <rect x="22" y="96" width="48" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
+          <rect x="82" y="96" width="34" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="140" y="96" width="26" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="196" y="96" width="36" height="4" rx="2" fill="rgba(224,92,75,0.5)"/>
+          <rect x="14" y="106" width="292" height="14" fill="rgba(255,255,255,0.018)"/>
+          <rect x="22" y="111" width="42" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
+          <rect x="82" y="111" width="30" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="140" y="111" width="30" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="196" y="111" width="36" height="4" rx="2" fill="rgba(100,200,160,0.4)"/>
+          <rect x="14" y="121" width="292" height="14" fill="rgba(0,0,0,0.14)"/>
+          <rect x="22" y="126" width="46" height="4" rx="2" fill="rgba(255,255,255,0.16)"/>
+          <rect x="82" y="126" width="26" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="140" y="126" width="32" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="196" y="126" width="36" height="4" rx="2" fill="rgba(201,169,110,0.4)"/>
+          <rect x="14" y="136" width="292" height="14" fill="rgba(255,255,255,0.018)"/>
+          <rect x="22" y="141" width="40" height="4" rx="2" fill="rgba(255,255,255,0.16)"/>
+          <rect x="82" y="141" width="36" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="140" y="141" width="24" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="196" y="141" width="36" height="4" rx="2" fill="rgba(100,200,160,0.4)"/>
+          <!-- Invoice modal -->
+          <rect x="96" y="162" width="160" height="82" rx="8" fill="#1a1714" stroke="rgba(201,169,110,0.38)" stroke-width="1.2"/>
+          <rect x="96" y="162" width="160" height="22" rx="8" fill="rgba(201,169,110,0.1)"/>
+          <rect x="96" y="175" width="160" height="9" fill="rgba(201,169,110,0.08)"/>
+          <rect x="106" y="168" width="68" height="6" rx="3" fill="rgba(201,169,110,0.6)"/>
+          <rect x="106" y="190" width="56" height="4" rx="2" fill="rgba(255,255,255,0.22)"/>
+          <rect x="170" y="190" width="76" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="106" y="200" width="48" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
+          <rect x="106" y="210" width="52" height="4" rx="2" fill="rgba(201,169,110,0.5)"/>
+          <rect x="106" y="226" width="50" height="12" rx="6" fill="rgba(201,169,110,0.28)"/>
+          <rect x="112" y="230" width="38" height="4" rx="2" fill="rgba(255,255,255,0.4)"/>
+          <rect x="164" y="226" width="50" height="12" rx="6" fill="rgba(224,92,75,0.28)"/>
+          <rect x="170" y="230" width="38" height="4" rx="2" fill="rgba(255,255,255,0.35)"/>
+        </svg>
+      </div>
+      <div class="proj-info">
+        <div class="proj-num">08</div>
+        <div class="proj-tag">Java · POO · Desktop</div>
+        <h3 class="proj-title">Hardware &amp; Co — Gestion de Quincaillerie</h3>
+        <p class="proj-desc">Application desktop Java orientée objets pour gérer produits, ventes, factures, stocks et fournisseurs. Interface graphique complète avec persistance MySQL.</p>
+        <div class="proj-stack"><span class="s-tag">Java</span><span class="s-tag">POO</span><span class="s-tag">MySQL</span><span class="s-tag">NetBeans</span></div>
+      </div>
+    </div>
+
+    <!-- ── P9 Surveillance CPU en C ── -->
     <div class="proj-row reveal">
-      <div class="proj-illus" style="background:linear-gradient(135deg,#0e080a,#1a0a0d)">
-        <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="15" y="20" width="270" height="210" rx="0" fill="#0a0508" stroke="rgba(224,92,75,0.3)" stroke-width="1"/>
-          <rect x="15" y="20" width="270" height="20" fill="rgba(0,0,0,0.5)"/>
-          <text x="22" y="33" fill="rgba(224,92,75,0.7)" font-size="8" font-family="monospace">SysMonitor v1.0 — CPU &amp; Memory Tracker</text>
-          <rect x="15" y="40" width="270" height="190" fill="#060305"/>
-          <text x="22" y="56" fill="rgba(100,255,100,0.8)" font-size="7.5" font-family="monospace">$ ./sysmonitor --live</text>
-          <text x="22" y="70" fill="rgba(201,169,110,0.6)" font-size="7" font-family="monospace">CPU Usage ████████████░░░░ 74.2%</text>
-          <rect x="22" y="74" width="140" height="5" rx="0" fill="rgba(50,50,50,0.8)"/>
-          <rect x="22" y="74" width="104" height="5" rx="0" fill="rgba(224,92,75,0.7)"/>
-          <text x="22" y="88" fill="rgba(201,169,110,0.6)" font-size="7" font-family="monospace">MEM Usage ██████░░░░░░░░░░ 41.8%</text>
-          <rect x="22" y="92" width="140" height="5" rx="0" fill="rgba(50,50,50,0.8)"/>
-          <rect x="22" y="92" width="58" height="5" rx="0" fill="rgba(100,150,255,0.7)"/>
-          <text x="22" y="108" fill="rgba(100,255,100,0.6)" font-size="7" font-family="monospace">Core 0: 81%  Core 1: 67%  Core 2: 70%  Core 3: 79%</text>
-          <rect x="22" y="118" width="270" height="1" fill="rgba(255,255,255,0.06)"/>
-          <text x="22" y="132" fill="rgba(150,150,255,0.7)" font-size="7" font-family="monospace">PID    PROCESS          CPU%    MEM%</text>
-          <text x="22" y="144" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">1234   chrome           24.1    8.2</text>
-          <text x="22" y="155" fill="rgba(255,255,255,0.4)" font-size="7" font-family="monospace">5678   code             18.3    6.1</text>
-          <text x="22" y="166" fill="rgba(255,255,255,0.35)" font-size="7" font-family="monospace">9012   node             12.7    4.8</text>
-          <text x="22" y="177" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">3456   sysmonitor        2.1    0.9</text>
-          <rect x="22" y="190" width="270" height="1" fill="rgba(255,255,255,0.06)"/>
-          <text x="22" y="205" fill="rgba(100,255,100,0.5)" font-size="7" font-family="monospace">Uptime: 03:42:17  |  Temp CPU: 62°C  |  Refresh: 1s</text>
-          <text x="22" y="218" fill="rgba(224,92,75,0.4)" font-size="7" font-family="monospace">▸ Press Q to quit | R to refresh | S to export log</text>
-          <rect x="264" y="22" width="10" height="10" fill="rgba(224,92,75,0.3)"/>
-          <text x="265" y="30" fill="rgba(224,92,75,0.6)" font-size="8" font-family="monospace">×</text>
+      <div class="proj-illus" style="background:#060305">
+        <svg viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Terminal window -->
+          <rect x="14" y="16" width="292" height="240" rx="0" fill="#040206" stroke="rgba(224,92,75,0.28)" stroke-width="1"/>
+          <rect x="14" y="16" width="292" height="22" fill="rgba(0,0,0,0.7)"/>
+          <circle cx="28" cy="27" r="5" fill="rgba(224,92,75,0.6)"/>
+          <circle cx="46" cy="27" r="5" fill="rgba(201,169,110,0.4)"/>
+          <circle cx="64" cy="27" r="5" fill="rgba(100,200,160,0.4)"/>
+          <text x="120" y="31" fill="rgba(255,255,255,0.3)" font-size="8" font-family="monospace">sysmonitor — bash</text>
+          <!-- Terminal content -->
+          <text x="22" y="54" fill="rgba(100,255,100,0.75)" font-size="8" font-family="monospace">$ ./sysmonitor --live --refresh 1s</text>
+          <rect x="22" y="60" width="280" height="1" fill="rgba(255,255,255,0.06)"/>
+          <!-- CPU section -->
+          <text x="22" y="74" fill="rgba(201,169,110,0.7)" font-size="7.5" font-family="monospace">▸ CPU USAGE</text>
+          <text x="22" y="88" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">Core 0</text>
+          <rect x="68" y="82" width="160" height="8" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="68" y="82" width="124" height="8" rx="1" fill="rgba(224,92,75,0.65)"/>
+          <text x="234" y="88" fill="rgba(224,92,75,0.8)" font-size="7" font-family="monospace">77.4%</text>
+          <text x="22" y="102" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">Core 1</text>
+          <rect x="68" y="96" width="160" height="8" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="68" y="96" width="96" height="8" rx="1" fill="rgba(224,130,75,0.6)"/>
+          <text x="234" y="102" fill="rgba(224,130,75,0.8)" font-size="7" font-family="monospace">59.8%</text>
+          <text x="22" y="116" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">Core 2</text>
+          <rect x="68" y="110" width="160" height="8" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="68" y="110" width="112" height="8" rx="1" fill="rgba(201,169,110,0.6)"/>
+          <text x="234" y="116" fill="rgba(201,169,110,0.8)" font-size="7" font-family="monospace">70.1%</text>
+          <text x="22" y="130" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">Core 3</text>
+          <rect x="68" y="124" width="160" height="8" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="68" y="124" width="130" height="8" rx="1" fill="rgba(224,92,75,0.5)"/>
+          <text x="234" y="130" fill="rgba(224,92,75,0.7)" font-size="7" font-family="monospace">81.2%</text>
+          <rect x="22" y="136" width="280" height="1" fill="rgba(255,255,255,0.05)"/>
+          <!-- Memory section -->
+          <text x="22" y="150" fill="rgba(100,160,255,0.7)" font-size="7.5" font-family="monospace">▸ MEMORY</text>
+          <text x="22" y="163" fill="rgba(255,255,255,0.5)" font-size="7" font-family="monospace">RAM</text>
+          <rect x="58" y="157" width="200" height="8" rx="1" fill="rgba(255,255,255,0.06)"/>
+          <rect x="58" y="157" width="84" height="8" rx="1" fill="rgba(100,160,255,0.6)"/>
+          <text x="264" y="163" fill="rgba(100,160,255,0.8)" font-size="7" font-family="monospace">41.8%</text>
+          <rect x="22" y="170" width="280" height="1" fill="rgba(255,255,255,0.05)"/>
+          <!-- Process table -->
+          <text x="22" y="183" fill="rgba(130,100,255,0.7)" font-size="7.5" font-family="monospace">▸ TOP PROCESSES</text>
+          <text x="22" y="196" fill="rgba(150,150,255,0.6)" font-size="7" font-family="monospace">PID    PROCESS          CPU%    MEM%</text>
+          <text x="22" y="208" fill="rgba(255,255,255,0.45)" font-size="7" font-family="monospace">1234   chrome           24.1    8.2</text>
+          <text x="22" y="219" fill="rgba(255,255,255,0.35)" font-size="7" font-family="monospace">5678   code             18.3    6.1</text>
+          <text x="22" y="230" fill="rgba(255,255,255,0.28)" font-size="7" font-family="monospace">9012   node             12.7    4.8</text>
+          <rect x="22" y="236" width="280" height="1" fill="rgba(255,255,255,0.05)"/>
+          <text x="22" y="249" fill="rgba(100,255,100,0.45)" font-size="7" font-family="monospace">Uptime: 03:42:17  |  Temp: 62°C  |  [Q]quit [R]refresh</text>
+          <!-- Blink cursor -->
+          <rect x="22" y="254" width="7" height="10" rx="1" fill="rgba(100,255,100,0.5)">
+            <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+          </rect>
         </svg>
       </div>
       <div class="proj-info">
         <div class="proj-num">09</div>
         <div class="proj-tag">Langage C · Système · Terminal</div>
         <h3 class="proj-title">Surveillance CPU &amp; Mémoire</h3>
-        <p class="proj-desc">Outil de monitoring système en temps réel développé en C. Affichage de l\'utilisation CPU par cœur, consommation mémoire, liste des processus actifs et export de logs.</p>
+        <p class="proj-desc">Outil de monitoring système en temps réel développé en C. Affichage CPU par cœur, consommation RAM, liste des processus actifs, températures et export de logs.</p>
         <div class="proj-stack"><span class="s-tag">Langage C</span><span class="s-tag">Linux</span><span class="s-tag">Sys Calls</span><span class="s-tag">Terminal</span></div>
       </div>
     </div>
@@ -415,17 +772,23 @@ html = '''<!DOCTYPE html>
   </div>
 </section>
 
-<!-- FORMATION -->
+<!-- ══ FORMATION ══ -->
 <section id="formation">
   <div class="s-eye">// 03 — Formation</div>
   <h2 class="s-title reveal">Parcours<br><em>académique</em></h2>
   <div class="reveal">
-    <div class="f-row"><div class="f-year">2023 — 2024</div><div><div class="f-degree">Licence en Informatique — Développement d\'Applications</div><div class="f-school">UCAO-UUT · Sanguera, Togo</div></div></div>
-    <div class="f-row"><div class="f-year">2022</div><div><div class="f-degree">Baccalauréat Scientifique</div><div class="f-school">Lycée de l\'Alliance Chrétienne · Burkina Faso</div></div></div>
+    <div class="f-row">
+      <div class="f-year">2023 — 2024</div>
+      <div><div class="f-degree">Licence en Informatique — Développement d'Applications</div><div class="f-school">UCAO-UUT · Sanguera, Togo</div></div>
+    </div>
+    <div class="f-row">
+      <div class="f-year">2022</div>
+      <div><div class="f-degree">Baccalauréat Scientifique</div><div class="f-school">Lycée de l'Alliance Chrétienne · Burkina Faso</div></div>
+    </div>
   </div>
 </section>
 
-<!-- LANGUES -->
+<!-- ══ LANGUES ══ -->
 <section id="langues">
   <div class="s-eye">// 04 — Langues</div>
   <h2 class="s-title reveal">Communication</h2>
@@ -436,19 +799,19 @@ html = '''<!DOCTYPE html>
   </div>
 </section>
 
-<!-- INTÉRÊTS -->
+<!-- ══ INTÉRÊTS ══ -->
 <section id="interests">
-  <div class="s-eye">// 05 — Centres d\'intérêt</div>
-  <h2 class="s-title reveal">Ce qui<br><em>m\'anime</em></h2>
+  <div class="s-eye">// 05 — Centres d'intérêt</div>
+  <h2 class="s-title reveal">Ce qui<br><em>m'anime</em></h2>
   <div class="int-grid reveal">
-    <div class="int-item">📱 Apps mobiles &amp; web</div>
-    <div class="int-item">🚀 Nouvelles technologies</div>
-    <div class="int-item">🎺 Trompette &amp; chant</div>
-    <div class="int-item">🎤 Slam &amp; art oratoire</div>
+    <div class="int-item"> Apps mobiles &amp; web</div>
+    <div class="int-item"> Nouvelles technologies</div>
+    <div class="int-item"> Trompette &amp; chant</div>
+    <div class="int-item"> Slam &amp; art oratoire</div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ══ CONTACT ══ -->
 <section id="contact">
   <div>
     <div class="s-eye">// 06 — Contact</div>
@@ -456,8 +819,8 @@ html = '''<!DOCTYPE html>
   </div>
   <div class="contact-links">
     <a href="mailto:dorcasouedraogo393@gmail.com" class="c-link">✉ dorcasouedraogo393@gmail.com</a>
-    <a href="tel:+22898766060" class="c-link">📞 +228 98766060</a>
-    <a href="tel:+22677692828" class="c-link">📞 +226 77692828</a>
+    <a href="tel:+22898766060" class="c-link"> +228 98766060</a>
+    <a href="tel:+22677692828" class="c-link"> +226 77692828</a>
     <a href="https://github.com/dorcasouedraogo393-cell/portefolio.git" target="_blank" class="c-link">⌥ GitHub</a>
   </div>
 </section>
@@ -468,16 +831,12 @@ html = '''<!DOCTYPE html>
 </footer>
 
 <script>
-  const cur=document.getElementById("cur"),ring=document.getElementById("cur-ring");
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;});
-  (function loop(){cur.style.left=mx-5+"px";cur.style.top=my-5+"px";rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-18+"px";ring.style.top=ry-18+"px";requestAnimationFrame(loop);})();
-  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:.1});
-  document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function loop(){cur.style.left=mx-5+'px';cur.style.top=my-5+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(loop);})();
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
-</html>'''
-
-
-
-
+</html>
